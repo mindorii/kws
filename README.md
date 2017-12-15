@@ -1,18 +1,90 @@
 # End-to-end Keyword Spotting and Voice Activity Detection
 
-The reference implementation for [An End-to-End Architecture for Keyword Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405)
+The reference implementation for [An End-to-End Architecture for Keyword
+Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405)
 
 ## Abstract
 
-We propose a single neural network architecture for two tasks: on-line keyword spotting and voice activity detection. We develop novel inference algorithms for an end-to-end Recurrent Neural Network trained with the Connectionist Temporal Classification loss function which allow our model to achieve high accuracy on both keyword spotting and voice activity detection without retraining. In contrast to prior voice activity detection models, our architecture does not require aligned training data and uses the same parameters as the keyword spotting model. This allows us to deploy a high quality voice activity detector with no additional memory or maintenance requirements.
+We propose a single neural network architecture for two tasks: on-line keyword
+spotting and voice activity detection. We develop novel inference algorithms
+for an end-to-end Recurrent Neural Network trained with the Connectionist
+Temporal Classification loss function which allow our model to achieve high
+accuracy on both keyword spotting and voice activity detection without
+retraining. In contrast to prior voice activity detection models, our
+architecture does not require aligned training data and uses the same
+parameters as the keyword spotting model. This allows us to deploy a high
+quality voice activity detector with no additional memory or maintenance
+requirements.
 
 ## Requirements
 
 ## Install
 
+### virtualenv
+
+Setup the environment and install python dependencies.
+
+```
+virtualenv kws
+source kws/bin/activate
+pip install -r requirements.txt
+```
+
+After the python dependencies are installed, from the repo root directory
+simply run:
+
+```
+make
+```
+
 ## Train
 
-## Inference
+All the configuration parameters can be found in `config/kws.json`. The most
+important thing to change here are the paths to the data json(s) and where to
+save the model. These are `config["data"]["train_jsons"]` and
+`config["io"]["save_path"]` respectively.
+
+Most of the other parameters should work out of the box, however you are free
+to change these for hyperparameter tuning etc.
+
+To train a model run
+```
+python train.py
+```
+
+For help / usage run
+
+```
+python train.py -h
+```
+
+This should produce:
+
+```
+usage: train.py [-h] [--config CONFIG] [--num_gpus NUM_GPUS]
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --config CONFIG      Configuration json for model building and training
+  --num_gpus NUM_GPUS  Number of GPUs to train with.
+```
+
+## Evaluation
+
+To evaluate a trained model use the `kws_eval.py` script. This takes as input a
+model directory and a list of wave files. The wave files can be arbitrary
+length, the model streams the evaluation.
+
+```
+usage: kws_eval.py [-h] --save_path SAVE_PATH --file_list FILE_LIST
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --save_path SAVE_PATH
+                        Path where model is saved.
+  --file_list FILE_LIST
+                        Path to list of wave files.
+```
 
 ## Citation
 
