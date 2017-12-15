@@ -19,7 +19,10 @@ requirements.
 [[Arxiv]](https://arxiv.org/abs/1611.09405)
 
 ## Requirements
-This code has been run on Ubuntu 14.04 with Python 2.7 and Tensorflow 1.4.0.
+This code has been run on Ubuntu 14.04 with Python 2.7 and Tensorflow 1.4.0. 
+
+The supported versions of CUDA include CUDA 7.5 with CUDNN 4.0. 
+(CUDA 9.0 is not yet supported.)
 
 We also require Boost Python. The build process will attempt to build the
 Ubuntu package `libsamplerate-dev`. For this you may need root access or you
