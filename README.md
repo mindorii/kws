@@ -1,7 +1,7 @@
 # End-to-end Keyword Spotting and Voice Activity Detection
 
-The reference implementation for [An End-to-End Architecture for Keyword
-Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405)
+The reference implementation of the high quality keyword spotter introduced in [An End-to-End Architecture for Keyword
+Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405).
 
 ## Abstract
 
@@ -16,8 +16,10 @@ parameters as the keyword spotting model. This allows us to deploy a high
 quality voice activity detector with no additional memory or maintenance
 requirements.
 
+[[Arxiv]](https://arxiv.org/abs/1611.09405)
+
 ## Requirements
-This code has been run on Ubuntu 14.04 with Python 2.7. 
+This code has been run on Ubuntu 14.04 with Python 2.7.
 
 We also require Boost Python. The build process will attempt to build the
 Ubuntu package `libsamplerate-dev`. For this you may need root access or you
@@ -49,6 +51,21 @@ After the dependencies are installed, run:
 ```
 make
 ```
+
+## Data
+
+[Dataset](https://drive.google.com/file/d/1wjJ7PYEJ8zFCoO6IEYaJyhxT266V1TKt/view?usp=sharing)
+
+Along with code, we also provide a dataset of positive examples for the keyword "Olivia." To train a high-quality model as described in the paper, you'll need your own corpus of LV speech data. The dataset is split as follows:
+
+* `train` (1544 samples)
+* `test` (550 samples)
+
+We also provide a dataset with added noise, as described in the paper:
+
+* `train_noise` (15440 samples)
+
+Download the data and unzip it into the `data` subdirectory.
 
 ## Train
 
