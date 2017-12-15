@@ -1,6 +1,6 @@
 # An End-to-End Architecture for Keyword Spotting and Voice Activity Detection
 
-The reference implementation of the high quality keyword spotter introduced in [An End-to-End Architecture for Keyword
+The reference implementation of the high-quality keyword spotter and voice activity detector introduced in [An End-to-End Architecture for Keyword
 Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405).
 
 ## Abstract
@@ -57,7 +57,7 @@ make
 
 ## Data
 
-[Dataset](https://drive.google.com/file/d/1wjJ7PYEJ8zFCoO6IEYaJyhxT266V1TKt/view?usp=sharing)
+[Dataset](https://drive.google.com/file/d/1m4HIscInvCDbxfU51utMUczcKRZdWv7j/view?usp=sharing)
 
 Along with code, we also provide a dataset of positive samples for the keyword "Olivia." To train a high-quality model as described in the paper, you'll need your own corpus of LV speech data and noise for negative samples. The dataset is split as follows:
 
