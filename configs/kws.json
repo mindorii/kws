@@ -1,6 +1,6 @@
 { 
     "data" : {
-        "train_jsons" : ["/home/data/kws/olivia_train.json"],
+        "train_jsons" : ["data/olivia_train.json"],
         "sample_rate" : 8000
     },
 
