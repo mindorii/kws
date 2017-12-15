@@ -1,6 +1,6 @@
 # An End-to-End Architecture for Keyword Spotting and Voice Activity Detection
 
-The reference implementation of the high-quality keyword spotter and voice activity detector introduced in [An End-to-End Architecture for Keyword
+The reference implementation and open-source datasets of the high-quality keyword spotter and voice activity detector introduced in [An End-to-End Architecture for Keyword
 Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405).
 
 ## Abstract
