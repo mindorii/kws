@@ -58,9 +58,10 @@ class MultiSpeechModel(object):
         self.lr = tf.train.exponential_decay(learning_rate, step,
                     decay_steps, decay_rate, staircase=True)
 
-        ema = tf.train.ExponentialMovingAverage(0.99, name="avg")
-        avg_cost_op = ema.apply([self.cost])
-        self._avg_cost = ema.average(self.cost)
+        with tf.variable_scope(tf.get_variable_scope(), reuse=tf.AUTO_REUSE):
+            ema = tf.train.ExponentialMovingAverage(0.99, name="avg")
+            avg_cost_op = ema.apply([self.cost])
+            self._avg_cost = ema.average(self.cost)
 
         grads = []
         for i in range(self.num_gpus):
@@ -71,10 +72,11 @@ class MultiSpeechModel(object):
         scaled_grads, norm = tf.clip_by_global_norm(average_grads, max_grad_norm)
         self._grad_norm = norm
 
-        optimizer = tf.train.MomentumOptimizer(self.lr, self._momentum)
-        with tf.control_dependencies([avg_cost_op]):
-            self._train_op = optimizer.apply_gradients(zip(scaled_grads, tvars),
-                                 global_step=step)
+        with tf.variable_scope(tf.get_variable_scope(), reuse=tf.AUTO_REUSE):
+            optimizer = tf.train.MomentumOptimizer(self.lr, self._momentum)
+            with tf.control_dependencies([avg_cost_op]):
+                self._train_op = optimizer.apply_gradients(zip(scaled_grads, tvars),
+                                     global_step=step)
 
         self._init_train = True
 
@@ -158,7 +160,7 @@ def _average_gradients(model_grads):
         grads = [tf.expand_dims(g, 0) for g in grads]
 
         # Average over the 'model' dimension.
-        grad = tf.concat(0, grads)
+        grad = tf.concat(grads, axis=0)
         grad = tf.reduce_mean(grad, 0)
 
         average_grads.append(grad)

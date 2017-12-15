@@ -34,7 +34,8 @@ def _WarpCtcGrad(op, grad_loss, _):
   grad = op.outputs[1]
   # Return gradient for inputs and None for
   # input_lengths, labels and label_lenghts
-  return [tf.nn.nn_grad._BroadcastMul(grad_loss, grad),
+  grad_loss = tf.reshape(grad_loss, (1, -1, 1))
+  return [tf.multiply(grad_loss, grad),
           None, None, None]
 
 

@@ -32,9 +32,9 @@ def check_path(path):
 
 def run_epoch(model, producer, session, save_path, saver):
 
-    summary_writer = tf.train.SummaryWriter(save_path, flush_secs=30)
+    summary_writer = tf.summary.FileWriter(save_path, flush_secs=30)
     model_path = os.path.join(save_path, "model.ckpt")
-    summary_op = tf.scalar_summary('cost', model.avg_cost)
+    summary_op = tf.summary.scalar('cost', model.avg_cost)
 
     ops = [model.grad_norm, model.cost, model.avg_cost,
            model.global_step, summary_op, model.train_op]
@@ -113,7 +113,7 @@ def main(argv=None):
         if restore_path:
             saver.restore(session, os.path.join(restore_path, "model.ckpt"))
         else:
-            session.run(tf.initialize_all_variables())
+            session.run(tf.global_variables_initializer())
             print("Estimating and setting the mean and standard...")
             mean, std = producer.estimate_mean_std()
             model.set_mean_std(mean, std, session)
