@@ -1,4 +1,4 @@
-# End-to-end Keyword Spotting and Voice Activity Detection
+# An End-to-And Architecture for Keyword Spotting and Voice Activity Detection
 
 The reference implementation of the high quality keyword spotter introduced in [An End-to-End Architecture for Keyword
 Spotting and Voice Activity Detection](https://arxiv.org/abs/1611.09405).
