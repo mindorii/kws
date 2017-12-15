@@ -19,7 +19,7 @@ requirements.
 [[Arxiv]](https://arxiv.org/abs/1611.09405)
 
 ## Requirements
-This code has been run on Ubuntu 14.04 with Python 2.7.
+This code has been run on Ubuntu 14.04 with Python 2.7 and Tensorflow 1.4.0.
 
 We also require Boost Python. The build process will attempt to build the
 Ubuntu package `libsamplerate-dev`. For this you may need root access or you
@@ -56,7 +56,7 @@ make
 
 [Dataset](https://drive.google.com/file/d/1wjJ7PYEJ8zFCoO6IEYaJyhxT266V1TKt/view?usp=sharing)
 
-Along with code, we also provide a dataset of positive examples for the keyword "Olivia." To train a high-quality model as described in the paper, you'll need your own corpus of LV speech data. The dataset is split as follows:
+Along with code, we also provide a dataset of positive samples for the keyword "Olivia." To train a high-quality model as described in the paper, you'll need your own corpus of LV speech data and noise for negative samples. The dataset is split as follows:
 
 * `train` (1544 samples)
 * `test` (550 samples)
