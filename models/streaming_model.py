@@ -27,7 +27,8 @@ class StreamingSpeechModel(object):
         self.ops = [model.probabilities, model.state]
 
     def initial_state(self):
-        rnn_state = self.model.initial_state.eval(session=self.session)
+        rnn_state = (i.eval(session=self.session)
+                        for i in self.model.initial_state)
         return SpeechModelState(rnn_state)
 
     def propagate_packet(self, packet, sample_rate, state):

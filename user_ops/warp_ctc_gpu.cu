@@ -15,13 +15,13 @@ void warp_ctc_gpu(const float* const inputs, float* grads,
                   float *losses) {
 
     cudaStream_t stream;
-    if (cudaStreamCreate(&stream)) {
-        // TODO, should do some error handling here.
-    }
+    throw_on_error(cudaStreamCreate(&stream),
+            "Error making cuda stream.");
 
     ctcOptions info;
     info.loc = CTC_GPU;
     info.stream = stream;
+    info.blank_label = 0;
 
     size_t gpu_alloc_bytes;
     get_workspace_size(label_lengths, input_lengths,

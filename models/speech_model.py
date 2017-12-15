@@ -157,7 +157,8 @@ class SpeechModel(object):
                            self._label_lens : label_lens }
             feed_dict.update(label_dict)
         if rnn_state is not None:
-            feed_dict[self._initial_state] = rnn_state
+            for i, r in zip(self._initial_state, rnn_state):
+                feed_dict[i] = r
 
         return feed_dict
 

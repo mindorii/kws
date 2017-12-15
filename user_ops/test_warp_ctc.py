@@ -18,7 +18,7 @@ class CTC(object):
 
         self.seq_lens = tf.placeholder(tf.int32)
 
-        self.ctc = tf.nn.ctc_loss(self.logits, labels, self.seq_lens)
+        self.ctc = tf.nn.ctc_loss(labels, self.logits, self.seq_lens)
 
     def feed_dict(self, logits, labels, seq_lens):
         indices = [[b, t] for b, label in enumerate(labels)
