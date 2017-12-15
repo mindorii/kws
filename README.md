@@ -17,6 +17,11 @@ quality voice activity detector with no additional memory or maintenance
 requirements.
 
 ## Requirements
+This code has been run on Ubuntu 14.04 with Python 2.7.
+
+We also require Boost Python. The build process will attempt to build the
+Ubuntu package `libsamplerate-dev`. For this you may need root access or you
+will need to modify the Makefiles.
 
 ## Install
 
