@@ -5,13 +5,12 @@ all: .deps fftw decode ops utils
 
 .deps:
 	sudo apt-get install libsamplerate-dev -y
-	sudo pip install -r requirements.txt
-	touch .deps
+	pip install -r requirements.txt
 
 .PHONY: decode ops utils
 
 fftw:
-	mkdir third_party && cd third_party && \
+	mkdir -p third_party && cd third_party && \
 	wget http://www.fftw.org/$(FFTW).tar.gz && \
 	tar -xzf $(FFTW).tar.gz && \
 	rm $(FFTW).tar.gz && \

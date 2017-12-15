@@ -17,7 +17,7 @@ quality voice activity detector with no additional memory or maintenance
 requirements.
 
 ## Requirements
-This code has been run on Ubuntu 14.04 with Python 2.7.
+This code has been run on Ubuntu 14.04 with Python 2.7. 
 
 We also require Boost Python. The build process will attempt to build the
 Ubuntu package `libsamplerate-dev`. For this you may need root access or you
@@ -27,16 +27,22 @@ will need to modify the Makefiles.
 
 ### virtualenv
 
-Setup the environment and install python dependencies.
+Setup the virtual environment:
 
-```
 virtualenv kws
 source kws/bin/activate
-pip install -r requirements.txt
+
+### Dependencies
+
+To install the system and python dependencies, from the repo root directory simply run:
+
+```
+make .deps
 ```
 
-After the python dependencies are installed, from the repo root directory
-simply run:
+### Build
+
+After the dependencies are installed, run:
 
 ```
 make
