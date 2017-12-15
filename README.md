@@ -29,8 +29,10 @@ will need to modify the Makefiles.
 
 Setup the virtual environment:
 
+```
 virtualenv kws
 source kws/bin/activate
+```
 
 ### Dependencies
 
