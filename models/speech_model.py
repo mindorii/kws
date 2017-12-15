@@ -3,7 +3,7 @@ from __future__ import division
 import math
 import numpy as np
 import tensorflow as tf
-from speech.user_ops import warp_ctc_ops
+from user_ops import warp_ctc_ops
 
 class SpeechModel(object):
 
@@ -68,8 +68,8 @@ class SpeechModel(object):
         rnn_in = tf.transpose(conv_out, [1, 0, 2])
 
         with tf.variable_scope("rnn", initializer=initializer):
-            cell = tf.nn.rnn_cell.GRUCell(hidden_size)
-            cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)
+            layers = [tf.nn.rnn_cell.GRUCell(hidden_size) for _ in range(num_layers)]
+            cells = tf.nn.rnn_cell.MultiRNNCell(layers)
             self._initial_state = cells.zero_state(batch_size, tf.float32)
 
         (rnn_out, state) = tf.nn.dynamic_rnn(cells, rnn_in, out_lens,

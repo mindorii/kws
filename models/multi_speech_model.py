@@ -33,17 +33,14 @@ class MultiSpeechModel(object):
         assert self._init_inference, "Must init inference before cost."
         for i in range(self.num_gpus):
             with tf.device('/gpu:{}'.format(i)):
-                self._models[i].init_cost()
-                tf.get_variable_scope().reuse_variables()
+                with tf.variable_scope(tf.get_variable_scope(), reuse=True):
+                    self._models[i].init_cost()
 
         costs = [model.cost for model in self._models]
         zero = tf.constant(0.0)
-        finite_costs = [tf.select(tf.is_finite(c), c, zero) for c in costs]
+        finite_costs = [tf.where(tf.is_finite(c), c, zero) for c in costs]
         self._cost =  tf.div(tf.add_n(finite_costs),
-                             self.num_gpus,
-                             # TODO, give the cost a name so we
-                             # can change the denominator betwen on restore
-                             name="truediv_8")
+                             self.num_gpus)
         self._init_cost = True
 
     def init_train(self, config):

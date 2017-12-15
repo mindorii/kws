@@ -5,10 +5,10 @@ import numpy as np
 import os
 import tensorflow as tf
 
-from speech import audio_producer, decoder
+import audio_producer, decoder
 import speech_model
 import streaming_model
-from speech.utils import wave_utils
+from utils import wave_utils
 
 class KWS(object):
 

@@ -2,7 +2,7 @@ from __future__ import division
 
 import numpy as np
 
-from speech import audio_producer
+import audio_producer
 
 class SpeechModelState(object):
 

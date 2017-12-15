@@ -52,6 +52,11 @@ make
 
 ## Train
 
+Before training, make sure to set your `PYTHONPATH` to the kws directory
+```
+export PYTHONPATH=$PYTHONPATH:`pwd`
+```
+
 All the configuration parameters can be found in `config/kws.json`. The most
 important thing to change here are the paths to the data json(s) and where to
 save the model. These are `config["data"]["train_jsons"]` and
