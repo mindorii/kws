@@ -1,0 +1,32 @@
+{ 
+    "data" : {
+        "train_jsons" : ["/home/data/kws/olivia_train.json",
+                         "/home/data/kws/olivia_train_noise.json"],
+        "sample_rate" : 8000
+    },
+
+    "inference" : { 
+        "hidden_size" : 256,
+        "num_layers" : 3,
+        "num_filters" : 32,
+        "temporal_context" : 15,
+        "frequency_context" : 32,
+        "padding" : "VALID",
+        "stride" : 3,
+        "batch_size" : 512
+    },
+
+    "train" : { 
+        "learning_rate" : 2e-3,
+        "lr_decay_steps" : 5000,
+        "lr_decay_rate" : 0.9,
+        "momentum" : 0.95,
+        "max_grad_norm" : 100,
+        "epochs" : 100
+    },
+
+    "io" : {
+        "restore_path" : "",
+        "save_path" : "/home/awni/models/kws/kws_small"
+    }
+}

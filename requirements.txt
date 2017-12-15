@@ -1,0 +1,2 @@
+numpy
+scikits.samplerate==0.3.3
