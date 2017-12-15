@@ -69,7 +69,8 @@ Download the data and unzip it into the `data` subdirectory.
 
 ## Train
 
-Before training, make sure to set your `PYTHONPATH` to the kws directory
+Before training, make sure to set your `PYTHONPATH` to the repo top level
+directory. From the repo top level directory run
 ```
 export PYTHONPATH=$PYTHONPATH:`pwd`
 ```
