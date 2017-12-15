@@ -1,7 +1,6 @@
 { 
     "data" : {
-        "train_jsons" : ["/home/data/kws/olivia_train.json",
-                         "/home/data/kws/olivia_train_noise.json"],
+        "train_jsons" : ["/home/data/kws/olivia_train.json"],
         "sample_rate" : 8000
     },
 
@@ -27,6 +26,6 @@
 
     "io" : {
         "restore_path" : "",
-        "save_path" : "/home/awni/models/kws/kws_small"
+        "save_path" : "/home/ubuntu/models/kws/test"
     }
 }
