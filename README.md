@@ -59,7 +59,7 @@ make
 
 [Dataset](https://drive.google.com/file/d/1m4HIscInvCDbxfU51utMUczcKRZdWv7j/view?usp=sharing)
 
-Along with code, we also provide an open-source dataset of positive samples for the keyword "Olivia." To replicate the paper results, you'll need to add your own corpus of LV speech data and noise and train the model on the joint corpus. The dataset is split as follows:
+Along with code, we also provide an open-source dataset of positive samples for the keyword "Olivia." To get decent accuracy, you'll need to include a corpus of LV speech data and train the model on the joint corpus. Some publicly available datasets that will work include Mozilla's [Common Voice](https://voice.mozilla.org/data) corpus and [LibriSpeech](http://www.openslr.org/12). The dataset is split as follows:
 
 * `train` (1544 samples)
 * `test` (550 samples)
