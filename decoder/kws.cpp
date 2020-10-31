@@ -41,7 +41,7 @@ float cscore_kws(const float* probs,
 
     std::fill(prev_alphas, prev_alphas + S, neginf);
 
-    int start =  (((S /2) + repeats - T) < 0) ? 0 : 1,
+    int start = (((S /2) + repeats - T) < 0) ? 0 : 1,
             end = S > 1 ? 2 : 1;
 
     for (int i = start; i < end; ++i) {
@@ -102,35 +102,37 @@ float cscore_kws(const float* probs,
     return -loglike;
 }
 
-#ifdef PYTHON
+// Python Bindings
 #include <boost/python.hpp>
 #include <boost/python/extract.hpp>
-#include <boost/python/numeric.hpp>
+#include <boost/python/numpy.hpp>
 #include <numpy/noprefix.h>
 
 namespace py = boost::python;
-namespace np = boost::python::numeric;
+namespace np = boost::python::numpy;
 
-float score_kws(np::array probs, py::list labels,
+float score_kws(np::ndarray &probs, py::list labels,
                 const int blank) {
     // *NB* logits must be type float and row-major.
     py::object shape = probs.attr("shape");
 
     unsigned int time = py::extract<unsigned int>(shape[0]);
     unsigned int num_classes = py::extract<unsigned int>(shape[1]);
-    
-    float* data = static_cast<float*>(PyArray_DATA(probs.ptr()));
+
+    float* data = reinterpret_cast<float*>(probs.get_data());
 
     std::vector<int> label_vec;
     for (int i = 0; i < len(labels); i++) 
         label_vec.push_back(py::extract<int>(labels[i]));
 
-    return cscore_kws(data, time, num_classes,
-                      blank, label_vec);
+    float result = cscore_kws(data, time, num_classes,
+                              blank, label_vec);
+
+    return result;
 }
 
 BOOST_PYTHON_MODULE(kws) {
-    np::array::set_module_and_type("numpy", "ndarray");
+    Py_Initialize();
+    np::initialize();
     py::def("score_kws", &score_kws);
 }
-#endif
