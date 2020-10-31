@@ -3,7 +3,6 @@
 #include <vector>
 #include "kws.h"
 #include "ctc_utils.h"
-#include <iostream>
 
 namespace {
 
